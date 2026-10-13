@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    @apply bg-ink font-sans text-ivory antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-medium;
+  }
+
+  :focus-visible {
+    outline: 2px solid #b9a276;
+    outline-offset: 3px;
+  }
+
+  .on-light :focus-visible {
+    outline-color: #171717;
+  }
+
+  ::selection {
+    background: #b9a276;
+    color: #101010;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply text-[0.7rem] font-medium uppercase tracking-wide3;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 border px-7 text-[0.72rem] font-medium uppercase tracking-wide2 transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply btn border-champagne bg-champagne text-ink hover:bg-ivory hover:border-ivory;
+  }
+  .btn-ghost {
+    @apply btn border-ivory/30 text-ivory hover:border-champagne hover:text-champagne;
+  }
+  .btn-disabled {
+    @apply btn cursor-not-allowed border-ivory/15 text-ivory/45;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-current opacity-20;
+  }
+}
